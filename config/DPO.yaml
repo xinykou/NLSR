@@ -1,0 +1,53 @@
+### model
+model_name_or_path: ./saves/lora/sft/checkpoint-125-merged
+
+### method
+stage: dpo
+do_train: true
+do_eval: false
+do_predict: false
+finetuning_type: lora
+lora_target: q_proj, k_proj, v_proj, o_proj, up_proj, down_proj, gate_proj
+lora_rank: 128
+lora_alpha: 256
+pref_beta: 0.1
+pref_loss: sigmoid  # [sigmoid (dpo), orpo, simpo]
+
+### ddp
+ddp_timeout: 180000000
+deepspeed: ./LLaMA_Factory/examples/deepspeed/ds_z2_config.json
+
+### dataset
+dataset_dir: ./LLaMA_Factory/data
+dataset: BeaverTails_preference-2k
+template: safety_llama3
+cutoff_len: 1024
+#max_samples: 1000
+overwrite_cache: true
+preprocessing_num_workers: 16
+
+### output
+output_dir: saves/lora/dpo
+logging_steps: 5
+save_steps: 50000
+plot_loss: true
+overwrite_output_dir: true
+
+### train
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 2
+learning_rate: 0.000002
+num_train_epochs: 1
+lr_scheduler_type: cosine
+warmup_steps: 0.1
+bf16: true
+
+### eval
+#val_size: 0.1
+#per_device_eval_batch_size: 1
+#evaluation_strategy: steps
+#eval_steps: 500
+
+##logging
+report_to: wandb # ['tensorboard', 'wandb', 'mlflow', 'none']
+run_name: alignment-dpo

@@ -10,8 +10,10 @@
 
 
 ## Step 1: Construction of a safety reference model
-
 ``` 
+bash ./scripts/sft.sh
+bash ./scripts/dpo.sh
+
 bash ./scripts/expo-sft_to_dpo-lora.sh
 ```
 
