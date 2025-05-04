@@ -1,0 +1,15 @@
+{
+  "BeaverTails_preference-2k":{
+    "file_name": "safety/alignment/BeaverTails_preference-2k.json",
+    "ranking": true,
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    }
+  },
+   "BeaverTails_safe": {
+    "file_name": "safety/alignment/BeaverTails_safe-2k.json"
+  }
+}
